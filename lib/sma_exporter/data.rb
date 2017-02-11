@@ -51,7 +51,7 @@ module SmaExporter
     end
 
     def output
-      @output ||= `#{shellescape(sbfpath)} -nosql -nocsv -loadlive -sp0 -v`
+      @output ||= `#{shellescape(sbfpath)} -nosql -nocsv -loadlive -sp0 -v`.force_encoding("UTF-8")
     end
 
   end
