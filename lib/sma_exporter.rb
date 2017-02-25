@@ -67,7 +67,7 @@ module SmaExporter
     
     def set_grid!
       x = data.grid
-      GRID_FREQ.set({},x[:grid])
+      GRID_FREQ.set({},x[:freq])
       GRID_STATE.set({},x[:state])
     end
 
