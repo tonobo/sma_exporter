@@ -61,14 +61,11 @@ module SmaExporter
     def set_device!
       x = data.device
       DEV_TEMP.set({},x[:temp])
-      DEV_STATE.set({},x[:state])
-      DEV_SN.set({},x[:sn])
     end
     
     def set_grid!
       x = data.grid
       GRID_FREQ.set({},x[:freq])
-      GRID_STATE.set({},x[:state])
     end
 
     def set_dc!
