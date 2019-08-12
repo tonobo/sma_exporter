@@ -7,7 +7,6 @@ module SmaExporter
 
   class Rack
     def initialize(app)
-      p "moo"
       @app = app
     end
 
@@ -16,7 +15,7 @@ module SmaExporter
       @app.call(env)
     end
   end
- 
+
   module Runner
 
     PC = Prometheus::Client
@@ -24,7 +23,7 @@ module SmaExporter
     DC_POW = PC::Gauge.new(:sma_dc_power_kw, "DC Power")
     DC_U = PC::Gauge.new(:sma_dc_voltage, "DC Voltage")
     DC_I = PC::Gauge.new(:sma_dc_current, "DC Current")
-    
+
     AC_POW = PC::Gauge.new(:sma_ac_power_kw, "AC Power")
     AC_U = PC::Gauge.new(:sma_ac_voltage, "AC Voltage")
     AC_I = PC::Gauge.new(:sma_ac_current, "AC Current")
@@ -49,9 +48,9 @@ module SmaExporter
 
     def register!
       [
-        DC_POW, DC_U, DC_I, 
-        AC_POW, AC_I, AC_U, 
-        DEV_TEMP, DEV_STATE, DEV_SN, 
+        DC_POW, DC_U, DC_I,
+        AC_POW, AC_I, AC_U,
+        DEV_TEMP, DEV_STATE, DEV_SN,
         GRID_STATE, GRID_FREQ
       ].each do |x|
         PROMETHEUS.register x
@@ -62,7 +61,7 @@ module SmaExporter
       x = data.device
       DEV_TEMP.set({},x[:temp])
     end
-    
+
     def set_grid!
       x = data.grid
       GRID_FREQ.set({},x[:freq])
@@ -75,7 +74,7 @@ module SmaExporter
         DC_I.set({phase: x[:id]}, x[:current])
       end
     end
-   
+
     def set_ac!
       data.ac.each do |x|
         AC_POW.set({phase: x[:id]}, x[:power])

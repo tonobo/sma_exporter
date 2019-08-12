@@ -20,7 +20,7 @@ module SmaExporter
     end
 
     def grid
-      { 
+      {
         freq: output[/Grid Freq.[^\d]+(\d+\.\d+)/,1].to_f,
         state: value(output[/GridRelay Status\s*:\s*(\S+)/,1].to_s.downcase)
       }
@@ -45,7 +45,7 @@ module SmaExporter
         [^\d]+(\d+\.\d+)
         [^\d]+(\d+\.\d+)/x
       ).map do |x|
-        { id: x[0].to_i, power: x[1].to_f, 
+        { id: x[0].to_i, power: x[1].to_f,
           voltage: x[2].to_f, current: x[3].to_f }
       end
     end

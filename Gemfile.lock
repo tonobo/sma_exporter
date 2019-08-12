@@ -1,0 +1,38 @@
+PATH
+  remote: .
+  specs:
+    sma_exporter (0.1.0)
+      prometheus-client
+      rack
+      unicorn
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.2)
+    kgio (2.11.2)
+    method_source (0.9.2)
+    prometheus-client (0.9.0)
+      quantile (~> 0.2.1)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    quantile (0.2.1)
+    rack (2.0.7)
+    raindrops (0.19.0)
+    rake (12.3.3)
+    unicorn (5.5.1)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  pry
+  rake
+  sma_exporter!
+
+BUNDLED WITH
+   2.0.1
