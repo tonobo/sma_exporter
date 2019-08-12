@@ -8,6 +8,7 @@ Its prodly made by using docker.
 ## Usage
 
 ```
-docker run --net=host dopykuh/sma_exporter:armhf
+# Update SMA solar inverter and bootup exporter
+docker-compose up -d
 ```
 
