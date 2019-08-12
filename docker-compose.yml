@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  sma_exporter:
+    image: tonobo/sma_exporter
+    network_mode: host
+    labels:
+      - "com.ouroboros.enable=true"
+    environment:
+      SMA_ADDRESS: 10.10.10.10 # Default to 0.0.0.0 (broadcast enabled)
