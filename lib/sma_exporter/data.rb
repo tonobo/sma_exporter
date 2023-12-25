@@ -26,6 +26,20 @@ module SmaExporter
       }
     end
 
+    def yield
+      {
+        today: output[/EToday: (\d+(?:\.\d+)?)kWh/,1].to_f,
+        total: output[/ETotal: (\d+(?:\.\d+)?)kWh/,1].to_f,
+      }
+    end
+
+    def operating_hours
+      {
+        power: output[/Operation Time: (\d+(?:\.\d+)?)h/,1].to_f,
+        feed_in: output[/Feed-In Time  : (\d+(?:\.\d+)?)h/,1].to_f
+      }
+    end
+
     def ac
       output.scan(
         /Phase\s(\d+)
@@ -51,7 +65,11 @@ module SmaExporter
     end
 
     def output
-      @output ||= `#{shellescape(sbfpath)} -nosql -nocsv -loadlive -sp0 -finq -v`.force_encoding("UTF-8")
+      installer = ""
+      if ENV["SMA_INSTALLER"]
+        installer = "-installer -password:#{shellescape ENV['SMA_INSTALLER']}"
+      end
+      @output ||= `#{shellescape(sbfpath)} -nosql -nocsv -loadlive -sp0 -finq -v #{installer}`.force_encoding("UTF-8")
     end
 
     def value(v)

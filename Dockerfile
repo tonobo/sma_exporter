@@ -1,5 +1,6 @@
 FROM ubuntu
 
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install -y \
   sqlite3 libsqlite3-dev \
   libboost-date-time-dev libboost-system-dev libboost-filesystem-dev libboost-regex-dev \
