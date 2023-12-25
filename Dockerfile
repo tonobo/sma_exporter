@@ -14,11 +14,11 @@ RUN bundle update --bundler
 RUN bundle install -j $(nproc)
 RUN mkdir /srv/sbf
 WORKDIR /srv/sbf
-RUN tar -xf /srv/sma/sbfspot/SBFspot_SRC_331_Linux_Win32.tar.gz
-WORKDIR /srv/sbf/SBFspot
-RUN make -j$(nproc) install_sqlite
-RUN cp -v /srv/sma/sbfspot/*.cfg bin/Release_SQLite/
+RUN tar -xf /srv/sma/sbfspot/V3.9.7.tar.gz
+WORKDIR /srv/sbf/SBFspot-3.9.7/SBFspot
+RUN make -j$(nproc) sqlite
+RUN cp -v /srv/sma/sbfspot/*.cfg sqlite/bin/
 WORKDIR /srv/sma
 EXPOSE 5000
-CMD SMA_SBFPATH=/srv/sbf/SBFspot/bin/Release_SQLite/SBFspot bundle exec unicorn -c unicorn.conf
+CMD SMA_SBFPATH=/srv/sbf/SBFspot-3.9.7/SBFspot/sqlite/bin/SBFspot bundle exec unicorn -c unicorn.conf
 
