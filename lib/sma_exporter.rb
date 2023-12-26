@@ -30,13 +30,13 @@ module SmaExporter
       end
     end
 
-    DC_POW = PC::Gauge.new(:sma_dc_power_kw, docstring: "DC Power")
-    DC_U = PC::Gauge.new(:sma_dc_voltage, docstring: "DC Voltage")
-    DC_I = PC::Gauge.new(:sma_dc_current, docstring: "DC Current")
+    DC_POW = PC::Gauge.new(:sma_dc_power_kw, docstring: "DC Power", labels: [:phase])
+    DC_U = PC::Gauge.new(:sma_dc_voltage, docstring: "DC Voltage", labels: [:phase])
+    DC_I = PC::Gauge.new(:sma_dc_current, docstring: "DC Current", labels: [:phase])
 
-    AC_POW = PC::Gauge.new(:sma_ac_power_kw, docstring: "AC Power")
-    AC_U = PC::Gauge.new(:sma_ac_voltage, docstring: "AC Voltage")
-    AC_I = PC::Gauge.new(:sma_ac_current, docstring: "AC Current")
+    AC_POW = PC::Gauge.new(:sma_ac_power_kw, docstring: "AC Power", labels: [:phase])
+    AC_U = PC::Gauge.new(:sma_ac_voltage, docstring: "AC Voltage", labels: [:phase])
+    AC_I = PC::Gauge.new(:sma_ac_current, docstring: "AC Current", labels: [:phase])
 
     YIELD_TODAY_TOTAL = CustomCounter.new(:sma_yield_today_total, docstring: "Yield today")
     YIELD_TOTAL = CustomCounter.new(:sma_yield_total, docstring: "Yield overall")
